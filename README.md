@@ -24,6 +24,12 @@ A minimal Chrome extension that intercepts `mailto:` link clicks, copies the ema
 
 ![Toast notification showing "Email copied" with the address](https://github.com/user-attachments/assets/placeholder)
 
+## Test it
+
+Once installed, click this link: [code@umang.dev](mailto:code@umang.dev)
+
+The email address should be copied to your clipboard and a toast should appear — no mail app opened.
+
 ## Why
 
 Clicking a `mailto:` link almost never does what you want — it launches a mail app you may not use, or throws an error. This extension makes those links actually useful.
