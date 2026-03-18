@@ -22,13 +22,16 @@ A minimal Chrome/Firefox extension that intercepts `mailto:` and `tel:` link cli
 - Copies it to the clipboard
 - Shows a small toast in the bottom-right corner that dismisses after 2.5s
 
-![Toast notification showing "Email copied" with the address](https://github.com/user-attachments/assets/placeholder)
+![Toast notification showing "Email copied" with the address](toast-preview.png)
 
 ## Test it
 
-Once installed, click this link: [code@umang.dev](mailto:code@umang.dev)
+Once installed, click either of these links:
 
-The email address should be copied to your clipboard and a toast should appear — no mail app opened.
+- Email: [code@umang.dev](mailto:code@umang.dev)
+- Phone: [+1 (800) 555-0100](tel:+18005550100)
+
+The value should be copied to your clipboard and a toast should appear — no app opened.
 
 ## Why
 
