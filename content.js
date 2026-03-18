@@ -32,9 +32,23 @@
       document.documentElement.appendChild(toastEl);
     }
 
-    toastEl.innerHTML =
-      `<span style="font-size:15px">📋</span>` +
-      `<span><strong style="display:block;font-size:11px;opacity:0.6;margin-bottom:2px">${escapeHtml(label)}</strong>${escapeHtml(value)}</span>`;
+    toastEl.textContent = "";
+
+    const icon = document.createElement("span");
+    icon.style.fontSize = "15px";
+    icon.textContent = "📋";
+
+    const text = document.createElement("span");
+    const strong = document.createElement("strong");
+    Object.assign(strong.style, { display: "block", fontSize: "11px", opacity: "0.6", marginBottom: "2px" });
+    strong.textContent = label;
+    const val = document.createElement("span");
+    val.textContent = value;
+    text.appendChild(strong);
+    text.appendChild(val);
+
+    toastEl.appendChild(icon);
+    toastEl.appendChild(text);
 
     requestAnimationFrame(() => {
       toastEl.style.opacity = "1";
