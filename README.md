@@ -26,12 +26,9 @@ A minimal Chrome/Firefox extension that intercepts `mailto:` and `tel:` link cli
 
 ## Test it
 
-Once installed, click either of these links:
+Once installed, click this link: [code@umang.dev](mailto:code@umang.dev)
 
-- Email: [code@umang.dev](mailto:code@umang.dev)
-- Phone: [+1 (800) 555-0100](tel:+18005550100)
-
-The value should be copied to your clipboard and a toast should appear — no app opened.
+The email address should be copied to your clipboard and a toast should appear — no mail app opened.
 
 ## Why
 
