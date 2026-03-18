@@ -4,10 +4,16 @@ A minimal Chrome extension that intercepts `mailto:` link clicks, copies the ema
 
 ## Install
 
+**Chrome**
 1. Clone or download this repo
-2. Open Chrome and go to `chrome://extensions`
+2. Go to `chrome://extensions`
 3. Enable **Developer mode** (top-right toggle)
 4. Click **Load unpacked** and select the repo folder
+
+**Firefox**
+1. Clone or download this repo
+2. Go to `about:debugging#/runtime/this-firefox`
+3. Click **Load Temporary Add-on** and select any file in the repo folder
 
 ## How it works
 

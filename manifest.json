@@ -10,6 +10,12 @@
       "run_at": "document_idle"
     }
   ],
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "copymailto@umang350",
+      "strict_min_version": "109.0"
+    }
+  },
   "icons": {
     "16": "icon16.png",
     "48": "icon48.png",
