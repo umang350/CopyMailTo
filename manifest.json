@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "CopyMailTo",
   "version": "1.0.0",
-  "description": "Copies email addresses from mailto: links instead of opening your mail app.",
+  "description": "Copies email addresses and phone numbers from mailto:/tel: links instead of opening your mail or phone app.",
   "content_scripts": [
     {
       "matches": ["<all_urls>"],

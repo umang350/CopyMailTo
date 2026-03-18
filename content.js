@@ -2,7 +2,7 @@
   let toastEl = null;
   let hideTimer = null;
 
-  function showToast(email) {
+  function showToast(label, value) {
     if (!toastEl) {
       toastEl = document.createElement("div");
       toastEl.id = "__copymailto_toast__";
@@ -34,9 +34,8 @@
 
     toastEl.innerHTML =
       `<span style="font-size:15px">📋</span>` +
-      `<span><strong style="display:block;font-size:11px;opacity:0.6;margin-bottom:2px">Email copied</strong>${escapeHtml(email)}</span>`;
+      `<span><strong style="display:block;font-size:11px;opacity:0.6;margin-bottom:2px">${escapeHtml(label)}</strong>${escapeHtml(value)}</span>`;
 
-    // Trigger show
     requestAnimationFrame(() => {
       toastEl.style.opacity = "1";
       toastEl.style.transform = "translateY(0)";
@@ -57,40 +56,50 @@
       .replace(/"/g, "&quot;");
   }
 
-  function getMailtoEmail(target) {
+  function getLink(target) {
     const anchor = target.closest("a[href]");
     if (!anchor) return null;
     const href = anchor.getAttribute("href") || "";
-    if (!href.toLowerCase().startsWith("mailto:")) return null;
-    // mailto:email@example.com?subject=... — grab just the address part
-    const raw = href.slice("mailto:".length);
-    const email = raw.split(/[?&,]/)[0].trim();
-    return email || null;
+    const lower = href.toLowerCase();
+
+    if (lower.startsWith("mailto:")) {
+      const raw = href.slice("mailto:".length);
+      const value = raw.split(/[?&,]/)[0].trim();
+      return value ? { label: "Email copied", value } : null;
+    }
+
+    if (lower.startsWith("tel:")) {
+      const value = href.slice("tel:".length).trim();
+      return value ? { label: "Phone number copied", value } : null;
+    }
+
+    return null;
+  }
+
+  function copyAndToast(link) {
+    navigator.clipboard.writeText(link.value).then(() => {
+      showToast(link.label, link.value);
+    }).catch(() => {
+      const ta = document.createElement("textarea");
+      ta.value = link.value;
+      ta.style.cssText = "position:fixed;opacity:0;pointer-events:none";
+      document.documentElement.appendChild(ta);
+      ta.select();
+      document.execCommand("copy");
+      ta.remove();
+      showToast(link.label, link.value);
+    });
   }
 
   document.addEventListener(
     "click",
     (e) => {
-      const email = getMailtoEmail(e.target);
-      if (!email) return;
-
+      const link = getLink(e.target);
+      if (!link) return;
       e.preventDefault();
       e.stopImmediatePropagation();
-
-      navigator.clipboard.writeText(email).then(() => {
-        showToast(email);
-      }).catch(() => {
-        // Fallback for pages where clipboard API is restricted
-        const ta = document.createElement("textarea");
-        ta.value = email;
-        ta.style.cssText = "position:fixed;opacity:0;pointer-events:none";
-        document.documentElement.appendChild(ta);
-        ta.select();
-        document.execCommand("copy");
-        ta.remove();
-        showToast(email);
-      });
+      copyAndToast(link);
     },
-    true // capture phase so we intercept before any page handler
+    true
   );
 })();

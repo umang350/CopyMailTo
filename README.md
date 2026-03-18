@@ -1,6 +1,6 @@
 # CopyMailTo
 
-A minimal Chrome extension that intercepts `mailto:` link clicks, copies the email address to your clipboard, and shows a toast notification — instead of opening your mail app.
+A minimal Chrome/Firefox extension that intercepts `mailto:` and `tel:` link clicks, copies the value to your clipboard, and shows a toast notification — instead of opening your mail or phone app.
 
 ## Install
 
@@ -17,8 +17,8 @@ A minimal Chrome extension that intercepts `mailto:` link clicks, copies the ema
 
 ## How it works
 
-- Listens for clicks on `mailto:` links across all pages
-- Extracts just the email address (strips subject, cc, body params)
+- Listens for clicks on `mailto:` and `tel:` links across all pages
+- Extracts just the email address or phone number
 - Copies it to the clipboard
 - Shows a small toast in the bottom-right corner that dismisses after 2.5s
 
